@@ -12,6 +12,8 @@
 
 </div>
 
+### Netifly Deployment ✅
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e258b4cc-63e6-4d1a-971d-71af72826aa5/deploy-status)](https://app.netlify.com/sites/darshan-movie-app/deploys)
 <!-- ## 🤷🏼‍♂️ About This Project
 
 (Click on the image below for live demo) <br></br>
