@@ -1,8 +1,8 @@
 <div align="center">
 
-![Forks](https://img.shields.io/github/forks/darshangaikwad4114/Cryptocurrency-Price-Tracker?logo=GITHUB&style=for-the-badge)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=for-the-badge)](https://github.com/darshangaikwad4114/Cryptocurrency-Price-Tracker)
-[![Stargazers](https://img.shields.io/github/stars/darshangaikwad4114/Cryptocurrency-Price-Tracker?logo=github&style=for-the-badge)](https://github.com/darshangaikwad4114/Cryptocurrency-Price-Tracker/stargazers)
+![Forks](https://img.shields.io/github/forks/darshangaikwad4114/Movie-app?logo=GITHUB&style=for-the-badge)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=for-the-badge)](https://github.com/darshangaikwad4114/Movie-app)
+[![Stargazers](https://img.shields.io/github/stars/darshangaikwad4114/Movie-app?logo=github&style=for-the-badge)](https://github.com/darshangaikwad4114/Movie-app/stargazers)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/darshan-gaikwad/)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/darshan_4114_)
 
@@ -12,7 +12,7 @@
 
 </div>
 
-## 🤷🏼‍♂️ About This Project
+<!-- ## 🤷🏼‍♂️ About This Project
 
 (Click on the image below for live demo) <br></br>
 [![Screen Shot](https://github.com/darshangaikwad4114/Cryptocurrency-Price-Tracker/blob/main/public/image.png)](https://darshan-cryptocurrency-price-tracker.netlify.app/)
@@ -23,7 +23,7 @@
 
 - To check whether the price of a specific cryptocurrency has gone up or down, the user can search for it using the search bar and view its current price as well as its price change over various time periods.
 
-- The price change will be indicated by a percentage increase or decrease, allowing the user to quickly determine whether the cryptocurrency has gone up or down in value.
+- The price change will be indicated by a percentage increase or decrease, allowing the user to quickly determine whether the cryptocurrency has gone up or down in value. -->
 
 # ⚡Tech Stack
 
@@ -36,13 +36,13 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/darshangaikwad4114/Cryptocurrency-Price-Tracker.git
+  git clone https://github.com/darshangaikwad4114/Movie-app.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd Cryptocurrency-Price-Tracker
+  cd Movie-app
 ```
 
 Install dependencies
@@ -63,7 +63,7 @@ Give a ⭐️ if this project helped you!
 
 # 📝License
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/darshangaikwad4114/Cryptocurrency-Price-Tracker/blob/main/LICENCE)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/darshangaikwad4114/Movie-app/blob/main/LICENCE)
 
 # 🙌🏻 Feedback
 
