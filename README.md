@@ -1,6 +1,6 @@
 <div align="center">
 
-![Movie-app](https://socialify.git.ci/darshangaikwad4114/Movie-app/image?font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Light)
+![Movie-app](https://socialify.git.ci/darshangaikwad4114/Movie-app/image?font=Inter&language=1&name=1&owner=1&pattern=Solid&stargazers=1&theme=Light)
 
 ![Forks](https://img.shields.io/github/forks/darshangaikwad4114/Movie-app?logo=GITHUB&style=for-the-badge)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=for-the-badge)](https://github.com/darshangaikwad4114/Movie-app)
