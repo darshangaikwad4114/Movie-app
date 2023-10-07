@@ -1,10 +1,11 @@
 <div align="center">
 
+![Movie-app](https://socialify.git.ci/darshangaikwad4114/Movie-app/image?font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Light)
+
 ![Forks](https://img.shields.io/github/forks/darshangaikwad4114/Movie-app?logo=GITHUB&style=for-the-badge)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=for-the-badge)](https://github.com/darshangaikwad4114/Movie-app)
 [![Stargazers](https://img.shields.io/github/stars/darshangaikwad4114/Movie-app?logo=github&style=for-the-badge)](https://github.com/darshangaikwad4114/Movie-app/stargazers)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/darshan-gaikwad/)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/darshan_4114_)
 
 # Movie App ✨
 
@@ -12,8 +13,6 @@
 
 </div>
 
-### Netifly Deployment ✅
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e258b4cc-63e6-4d1a-971d-71af72826aa5/deploy-status)](https://app.netlify.com/sites/darshan-movie-app/deploys)
 <!-- ## 🤷🏼‍♂️ About This Project
 
 (Click on the image below for live demo) <br></br>
