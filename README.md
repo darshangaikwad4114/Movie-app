@@ -6,6 +6,7 @@
 [![Stargazers](https://img.shields.io/github/stars/darshangaikwad4114/Movie-app?logo=github&style=for-the-badge)](https://github.com/darshangaikwad4114/Movie-app/stargazers)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/darshan-gaikwad/)
 
+
 # Movie App ✨
 
 ## ✨ [Live Preview](https://darshan-movie-app.netlify.app/)
