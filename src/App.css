@@ -37,14 +37,5 @@ body {
   text-align: center;
 }
 
-/* @media only screen and (max-width: 767px) {
-  [class*="overlay"] {
-    width: 100%;
-  }
-}
 
-@media only screen and (max-width: 1024px) {
-  [class*="overlay"] {
-    width: 50%;
-  }
-} */
+ 
