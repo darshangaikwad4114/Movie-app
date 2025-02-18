@@ -1,8 +1,9 @@
 * {
-  padding: 0%;
-  margin: 0%;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background: #272626;
   color: #ffffff;
@@ -10,12 +11,32 @@ body {
 
 .movie-app > .row {
   overflow-x: auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+@media (min-width: 576px) {
+  .movie-app > .row {
+    flex-wrap: wrap;
+  }
+}
+
+.container-fluid {
+  padding: 20px;
 }
 
 .image-container {
   position: relative;
   transition: transform 0.2s;
+  flex: 0 0 20%; /* 5 cards in a row */
+  max-width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
 }
 
 .image-container:hover {
@@ -28,14 +49,22 @@ body {
 
 .overlay {
   position: absolute;
-  background: rgba(0, 0, 0, 0.831);
-  transition: 0.7s ease;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.5s ease;
   opacity: 0;
   bottom: 0;
   font-size: 20px;
   padding: 20px;
   text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.overlay svg {
+  color: white;
 }
 
 
- 

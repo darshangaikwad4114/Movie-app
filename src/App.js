@@ -3,43 +3,19 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import MovieList from "./components/MovieList";
-import MovieListHeading from "./components/MovieListHeading";
-import SearchBox from "./components/SearchBox";
 import AddFavourites from "./components/AddFavourites";
 import RemoveFavourites from "./components/RemoveFavourites";
-import PropTypes from "prop-types";
+import MovieListHeading from "./components/MovieListHeading";
 
 const API_KEY = "e04fd151"; // OMDB API key
 
-const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error("Error reading local storage", error);
-      return initialValue;
-    }
-  });
-
-  const setValue = (value) => {
-    try {
-      setStoredValue(value);
-      window.localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error("Error setting local storage", error);
-    }
-  };
-
-  return [storedValue, setValue];
-};
-
 const App = () => {
-  const [movies, setMovies] = useState([]);
-  const [favourites, setFavourites] = useLocalStorage("react-movie-app-favourites", []);
-  const [searchValue, setSearchValue] = useState("Avengers");
+  const [avengersMovies, setAvengersMovies] = useState([]);
+  const [transformersMovies, setTransformersMovies] = useState([]);
+  const [randomMovies, setRandomMovies] = useState([]);
+  const [favourites, setFavourites] = useState([]);
 
-  const getMovieRequest = async (searchValue) => {
+  const getMovieRequest = async (searchValue, setMovies) => {
     const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`;
 
     try {
@@ -53,8 +29,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    getMovieRequest(searchValue);
-  }, [searchValue]);
+    getMovieRequest("Avengers", setAvengersMovies);
+    getMovieRequest("Transformers", setTransformersMovies);
+    getMovieRequest("Toy Story", setRandomMovies);
+  }, []);
 
   const addFavouriteMovie = (movie) => {
     const newFavouriteList = [...favourites, movie];
@@ -72,39 +50,47 @@ const App = () => {
   return (
     <div className="container-fluid movie-app">
       <div className="row d-flex align-items-center mt-4 mb-4">
-        <MovieListHeading heading="Movies" />
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+        <MovieListHeading heading="Avengers Movies" />
       </div>
-      <div className="row">
+      <div className="row justify-content-center">
         <MovieList
-          movies={movies}
+          movies={avengersMovies}
           handleFavouritesClick={addFavouriteMovie}
           favouriteComponent={AddFavourites}
-          className="col-12 col-md-6 mb-4"
+        />
+      </div>
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieListHeading heading="Transformers Movies" />
+      </div>
+      <div className="row justify-content-center">
+        <MovieList
+          movies={transformersMovies}
+          handleFavouritesClick={addFavouriteMovie}
+          favouriteComponent={AddFavourites}
+        />
+      </div>
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieListHeading heading="Toy Story Movies" />
+      </div>
+      <div className="row justify-content-center">
+        <MovieList
+          movies={randomMovies}
+          handleFavouritesClick={addFavouriteMovie}
+          favouriteComponent={AddFavourites}
         />
       </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Favourite Movies" />
       </div>
-      <div className="row">
+      <div className="row justify-content-center">
         <MovieList
           movies={favourites}
           handleFavouritesClick={removeFavouriteMovie}
           favouriteComponent={RemoveFavourites}
-          className="col-12 col-md-6 mb-4"
         />
       </div>
     </div>
   );
-};
-
-App.propTypes = {
-  movies: PropTypes.array,
-  favourites: PropTypes.array,
-  searchValue: PropTypes.string,
-  setSearchValue: PropTypes.func,
-  addFavouriteMovie: PropTypes.func,
-  removeFavouriteMovie: PropTypes.func,
 };
 
 export default App;

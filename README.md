@@ -1,6 +1,6 @@
 <div align="center">
 
-# Movie App ✨
+# FilmFinder Movie App ✨
 
 ## ✨ [Live Preview](https://darshan-movie-app.netlify.app/)
 
@@ -14,6 +14,16 @@
 **Front End :** ReactJS, Bootstrap
 
 **API :** [OMDB API](https://www.omdbapi.com/)
+
+# FilmFinder Movie App
+
+This is a simple movie application built with React. It allows users to search for movies and add them to their favourites list.
+
+## Features
+
+- Search for movies using the OMDB API
+- Add movies to favourites
+- Remove movies from favourites
 
 ## 🚀 Getting Started
 
@@ -35,10 +45,19 @@ Install dependencies
   npm install
 ```
 
-Start the server
+## Usage
 
+1. Start the development server:
+    ```bash
+    npm start
+    ```
+2. Open your browser and navigate to `http://localhost:3000`.
+
+## Testing
+
+Run the tests using the following command:
 ```bash
-  npm run start
+npm test
 ```
 
 ## ✊ Show your support
