@@ -6,6 +6,8 @@ import MovieList from "./components/MovieList";
 import AddFavourites from "./components/AddFavourites";
 import RemoveFavourites from "./components/RemoveFavourites";
 import MovieListHeading from "./components/MovieListHeading";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const API_KEY = "e04fd151"; // OMDB API key
 
@@ -14,6 +16,7 @@ const App = () => {
   const [transformersMovies, setTransformersMovies] = useState([]);
   const [randomMovies, setRandomMovies] = useState([]);
   const [favourites, setFavourites] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   const getMovieRequest = async (searchValue, setMovies) => {
     const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`;
@@ -34,6 +37,12 @@ const App = () => {
     getMovieRequest("Toy Story", setRandomMovies);
   }, []);
 
+  useEffect(() => {
+    if (searchValue) {
+      getMovieRequest(searchValue, setRandomMovies);
+    }
+  }, [searchValue]);
+
   const addFavouriteMovie = (movie) => {
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
@@ -48,7 +57,18 @@ const App = () => {
   };
 
   return (
-    <div className="container-fluid movie-app">
+    <div className="container-fluid movie-app d-flex flex-column min-vh-100">
+      <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieListHeading heading="Search Results" />
+      </div>
+      <div className="row justify-content-center">
+        <MovieList
+          movies={randomMovies}
+          handleFavouritesClick={addFavouriteMovie}
+          favouriteComponent={AddFavourites}
+        />
+      </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Avengers Movies" />
       </div>
@@ -89,6 +109,7 @@ const App = () => {
           favouriteComponent={RemoveFavourites}
         />
       </div>
+      <Footer />
     </div>
   );
 };
