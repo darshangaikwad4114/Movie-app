@@ -57,7 +57,7 @@ const App = () => {
   };
 
   return (
-    <div className="container-fluid movie-app d-flex flex-column min-vh-100">
+    <div className="movie-app d-flex flex-column min-vh-100">
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Search Results" />

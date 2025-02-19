@@ -123,13 +123,10 @@ body {
 }
 
 .footer {
-  width: 100%;
   background-color: var(--secondary-color);
   color: var(--text-color);
   padding: 20px 0;
   text-align: center;
-  position: relative;
-  bottom: 0;
 }
 
 .section-heading {
