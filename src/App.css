@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #0B2447;
+  --secondary-color: #19376D;
+  --accent-color: #576CBC;
+  --background-color: #A5D7E8;
+  --text-color: #ffffff;
+  --muted-text-color: #B3B3B3;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,8 +14,8 @@
 }
 
 body {
-  background: #272626;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-color);
 }
 
 .movie-app > .row {
@@ -27,11 +36,25 @@ body {
 .image-container {
   position: relative;
   transition: transform 0.2s;
-  flex: 0 0 20%; /* 5 cards in a row */
-  max-width: 20%;
+  flex: 0 0 50%; /* 2 cards in a row for mobile */
+  max-width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (min-width: 576px) {
+  .image-container {
+    flex: 0 0 33.33%; /* 3 cards in a row for tablets */
+    max-width: 33.33%;
+  }
+}
+
+@media (min-width: 992px) {
+  .image-container {
+    flex: 0 0 16.66%; /* 6 cards in a row for desktops */
+    max-width: 16.66%;
+  }
 }
 
 .image-container img {
@@ -64,11 +87,11 @@ body {
 }
 
 .overlay svg {
-  color: white;
+  color: var(--accent-color);
 }
 
 .navbar {
-  background-color: #333;
+  background-color: var(--secondary-color);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -78,7 +101,7 @@ body {
 .navbar a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: var(--text-color);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -86,13 +109,13 @@ body {
 }
 
 .navbar a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
 }
 
 .navbar a.active {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 .navbar .navbar-brand {
@@ -100,10 +123,21 @@ body {
 }
 
 .footer {
-  background-color: #333;
-  color: #fff;
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 20px 0;
   text-align: center;
+  position: relative;
+  bottom: 0;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0;
+  color: var(--text-color);
 }
 
 
