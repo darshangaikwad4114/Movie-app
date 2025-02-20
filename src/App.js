@@ -31,7 +31,7 @@ const App = () => {
       const response = await axios.get(API_URL, {
         params: {
           s: searchValue,
-          apikey: API_KEY
+          apikey: process.env.REACT_APP_OMDB_API_KEY
         }
       });
       
