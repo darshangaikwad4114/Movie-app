@@ -5,11 +5,20 @@
   scroll-behavior: smooth;
 }
 
+/* Base Styles */
+:root {
+  --primary-bg: #141414;
+  --secondary-bg: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #e50914;
+  --overlay-gradient: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%);
+}
+
 body {
-  background: #f5f5f5;
-  color: #333;
-  margin: 0;
-  padding: 0;
+  background: var(--primary-bg);
+  color: var(--text-primary);
+  font-family: 'Netflix Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .container-fluid {
@@ -948,5 +957,537 @@ body {
   .movie-section,
   .movie-list-heading {
     /* ...combined styles... */
+  }
+}
+
+/* Modern Card Layout */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 2000px;
+}
+
+/* Enhanced Movie Card */
+.movie-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #141414;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  aspect-ratio: 2/3;
+  cursor: pointer;
+}
+
+.movie-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.movie-card:hover::after {
+  opacity: 1;
+}
+
+/* Optimized Image */
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.1);
+}
+
+/* Modern Content Overlay */
+.movie-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.movie-card:hover .movie-content {
+  transform: translateY(0);
+}
+
+/* Typography */
+.movie-title {
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease 0.1s;
+}
+
+.movie-card:hover .movie-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modern Button Design */
+.action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.movie-card:hover .action-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1536px) {
+  .movie-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}
+
+@media (max-width: 1024px) {
+  .movie-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .movie-title { font-size: 1rem; }
+}
+
+@media (max-width: 768px) {
+  .movie-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .movie-title { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .movie-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .movie-content { padding: 1rem; }
+  .action-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+}
+
+/* Performance Optimizations */
+.movie-card {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+.movie-poster {
+  loading: lazy;
+  decoding: async;
+}
+
+/* Smooth Scrolling */
+.content-wrapper {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Modern Grid Layout */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 2400px;
+}
+
+/* Enhanced Movie Card */
+.movie-card {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--secondary-bg);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  aspect-ratio: 2/3;
+  cursor: pointer;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+.movie-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* Optimized Image */
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.1);
+}
+
+/* Content Overlay */
+.movie-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 2;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.movie-card:hover .movie-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Typography */
+.movie-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Action Buttons */
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: var(--text-primary);
+  border: none;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (min-width: 2000px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  
+  .movie-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    padding: 1rem;
+  }
+  
+  .movie-content {
+    padding: 1rem;
+  }
+}
+
+/* Loading States */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--secondary-bg) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    var(--secondary-bg) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scroll Optimization */
+.content-wrapper {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-First Responsive Grid */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Start with 2 columns on mobile */
+  gap: 0.75rem;
+  padding: 0.75rem;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Progressive enhancement for larger screens */
+@media (min-width: 640px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1800px;
+  }
+}
+
+/* Mobile-Optimized Card Styles */
+.movie-card {
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  background: var(--secondary-bg);
+}
+
+/* Adjust content spacing for mobile */
+.movie-content {
+  padding: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .movie-content {
+    padding: 1rem;
+  }
+}
+
+/* Mobile-Friendly Typography */
+.movie-title {
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .movie-title {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-title {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+}
+
+/* Optimized Button Sizes */
+.button-group {
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.action-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .button-group {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .action-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Mobile Navigation Adjustments */
+.navbar {
+  padding: 0.5rem;
+  height: auto;
+  min-height: 60px;
+}
+
+.search-container {
+  width: calc(100% - 2rem);
+  max-width: none;
+  margin: 0.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    padding: 1rem 0;
+    min-height: 70px;
+  }
+
+  .search-container {
+    max-width: 400px;
+    margin: 0 1rem;
+  }
+}
+
+/* Responsive Section Spacing */
+.content-wrapper {
+  margin-top: 60px;
+  padding: 0.75rem;
+}
+
+.movie-section {
+  padding: 1rem 0.75rem;
+  margin: 0.75rem auto;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper {
+    margin-top: 70px;
+    padding: 1.5rem;
+  }
+
+  .movie-section {
+    padding: 2rem 1.5rem;
+    margin: 1.5rem auto;
+  }
+}
+
+/* Touch-Friendly Interactions */
+.movie-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.action-btn {
+  min-height: 36px; /* Minimum touch target size */
+  touch-action: manipulation;
+}
+
+/* Optimize for different device orientations */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .content-wrapper {
+    margin-top: 50px;
+  }
+
+  .navbar {
+    min-height: 50px;
+  }
+}
+
+/* Updated Button Styles */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  min-width: 36px;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.action-btn i {
+  font-size: 1.125rem;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .action-btn span {
+    display: none;
+  }
+  
+  .action-btn {
+    padding: 0.5rem;
+  }
+  
+  .action-btn i {
+    font-size: 1rem;
   }
 }
