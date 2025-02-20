@@ -10,12 +10,22 @@ class ErrorBoundary extends React.Component {
     return { hasError: true, error };
   }
 
+  componentDidCatch(error, errorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+
   render() {
     if (this.state.hasError) {
       return (
-        <div className="alert alert-danger m-3" role="alert">
-          <h4>Something went wrong</h4>
+        <div role="alert" className="error-container">
+          <h2>Something went wrong</h2>
           <p>{this.state.error?.message}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="retry-button"
+          >
+            Try Again
+          </button>
         </div>
       );
     }

@@ -1,37 +1,32 @@
-import { useState, useCallback } from 'react';
-import axios from 'axios';
+import { useState, useCallback, useMemo } from 'react';
+import { useApi } from './useApi';
 
 export const useMovies = () => {
   const [movies, setMovies] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { loading, error, fetchData } = useApi();
 
   const fetchMovies = useCallback(async (searchValue, category) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const apiKey = process.env.REACT_APP_OMDB_API_KEY;
-      const response = await axios.get(`https://www.omdbapi.com/?s=${searchValue}&apikey=${apiKey}`);
-      const data = response.data;
-
-      if (data.Response === "True") {
-        setMovies(prevMovies => ({
-          ...prevMovies,
-          [category]: data.Search
-        }));
-      } else {
-        setMovies(prevMovies => ({
-          ...prevMovies,
-          [category]: []
-        }));
-      }
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
+    const data = await fetchData('/', { s: searchValue });
+    
+    if (data?.Search) {
+      setMovies(prevMovies => ({
+        ...prevMovies,
+        [category]: data.Search
+      }));
     }
-  }, []);
+  }, [fetchData]);
 
-  return { movies, loading, error, fetchMovies };
+  const sortedMovies = useMemo(() => {
+    return Object.entries(movies).reduce((acc, [category, movieList]) => {
+      acc[category] = movieList.sort((a, b) => a.Title.localeCompare(b.Title));
+      return acc;
+    }, {});
+  }, [movies]);
+
+  return { 
+    movies: sortedMovies, 
+    loading, 
+    error, 
+    fetchMovies 
+  };
 };
