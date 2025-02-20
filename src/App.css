@@ -287,7 +287,11 @@ body {
 }
 
 .movie-section.favourites {
-  background: linear-gradient(135deg, #ffe6eb, #ffd9e3);
+  background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+  border: 2px solid #ffd700;
+  padding: 3rem 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .movie-section.searchResults {
@@ -499,4 +503,352 @@ body {
 .favorite-btn:focus-visible {
   outline: 3px solid #ffc107;
   outline-offset: 2px;
+}
+
+/* Movie Section Heading Styles */
+.movie-list-heading {
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 auto 2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-list-heading:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* Update section container alignment */
+.movie-section {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 1rem auto;
+  width: 100%;
+  max-width: 1800px;
+}
+
+@media (max-width: 768px) {
+  .movie-list-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .movie-list-heading:after {
+    width: 40px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 576px) {
+  .movie-list-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Enhanced Typography */
+.movie-list-heading {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, #333, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  position: relative;
+  text-align: center;
+}
+
+.movie-list-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #333, #666);
+  border-radius: 2px;
+}
+
+.movie-title {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced Favorite Button */
+.favorite-btn {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favorite-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.favorite-btn i {
+  font-size: 1.25rem;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .movie-list-heading {
+    font-size: 2rem;
+  }
+  
+  .movie-title {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .movie-list-heading {
+    font-size: 1.5rem;
+  }
+}
+
+/* Enhanced Movie Category Headings */
+.movie-list-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 0 3rem;
+  position: relative;
+  padding-bottom: 1rem;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-list-heading::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #3498db, transparent);
+}
+
+.movie-list-heading::after {
+  content: '★';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  background: #fff;
+  padding: 0 1rem;
+  color: #3498db;
+}
+
+/* Custom gradients for different categories */
+.avengers .movie-list-heading {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.transformers .movie-list-heading {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.toyStory .movie-list-heading {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.harryPotter .movie-list-heading {
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fastAndFurious .movie-list-heading {
+  background: linear-gradient(135deg, #d35400, #e67e22);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.piratesOfCaribbean .movie-list-heading {
+  background: linear-gradient(135deg, #16a085, #1abc9c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.favourites .movie-list-heading {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.2rem;
+  text-shadow: none;
+  margin-bottom: 3rem;
+}
+
+.favourites .movie-list-heading::before {
+  content: '♥';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #ffd700;
+  background: none;
+  padding: 0;
+  -webkit-text-fill-color: #ffd700;
+}
+
+.favourites .movie-list-heading::after {
+  background: linear-gradient(to right, transparent, #ffd700, transparent);
+  height: 3px;
+  width: 200px;
+}
+
+.searchResults .movie-list-heading {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .movie-list-heading {
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem;
+  }
+  
+  .movie-list-heading::before {
+    width: 100px;
+  }
+  
+  .movie-list-heading::after {
+    font-size: 1.2rem;
+    bottom: -8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .movie-list-heading {
+    font-size: 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+  
+  .movie-list-heading::before {
+    width: 80px;
+  }
+  
+  .movie-list-heading::after {
+    font-size: 1rem;
+    bottom: -7px;
+  }
+}
+
+/* Special effects for favourites cards */
+.favourites .image-container {
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.favourites .image-container:hover {
+  border-color: #ffd700;
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+.favourites .favorite-btn {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: #ffd700;
+}
+
+.favourites .favorite-btn:hover {
+  background: rgba(255, 215, 0, 0.25);
+}
+
+.favourites .movie-title {
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Corner decorations */
+.favourites::before,
+.favourites::after {
+  content: '★';
+  position: absolute;
+  font-size: 2rem;
+  color: #ffd700;
+  opacity: 0.5;
+}
+
+.favourites::before {
+  top: 20px;
+  left: 20px;
+}
+
+.favourites::after {
+  bottom: 20px;
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .favourites .movie-list-heading {
+    font-size: 2.5rem;
+  }
+  
+  .favourites::before,
+  .favourites::after {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .favourites .movie-list-heading {
+    font-size: 2rem;
+  }
+  
+  .favourites::before,
+  .favourites::after {
+    display: none;
+  }
 }

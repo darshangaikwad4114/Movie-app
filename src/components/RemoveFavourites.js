@@ -1,24 +1,12 @@
 import React from 'react';
 
 const RemoveFavourites = () => {
-	return (
-		<>
-			<span className='mr-2'>Remove from Favourites</span>
-			<svg
-				width='1em'
-				height='1em'
-				viewBox='0 0 16 16'
-				className='bi bi-x-square'
-				fill='currentColor'
-				xmlns='http://www.w3.org/2000/svg'
-			>
-				<path
-					fillRule='evenodd'
-					d='M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zm-1 1H3v12h10V2zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'
-				/>
-			</svg>
-		</>
-	);
+    return (
+        <div className="d-flex align-items-center justify-content-center">
+            <span className="me-2">Remove</span>
+            <i className="bi bi-star-fill" style={{ color: '#ffd700' }}></i>
+        </div>
+    );
 };
 
 export default RemoveFavourites;
