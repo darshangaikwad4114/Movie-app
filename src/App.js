@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense } from "react";
+import React, { Suspense, useCallback, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import MovieList from "./components/MovieList";
@@ -8,19 +8,16 @@ import MovieListHeading from "./components/MovieListHeading";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useMovies } from "./hooks/useMovies";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import ErrorBoundary from "./components/ErrorBoundary";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const App = () => {
   const { movies, loading, error, fetchMovies } = useMovies();
-  const [favourites, setFavourites] = useState(() => {
-    const saved = localStorage.getItem("favourites");
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [searchValue, setSearchValue] = useState("");
+  const [favourites, setFavourites] = useLocalStorage('favourites', []);
+  const [searchValue, setSearchValue] = useLocalStorage('searchValue', '');
 
-  useEffect(() => {
-    localStorage.setItem("favourites", JSON.stringify(favourites));
-  }, [favourites]);
-
+  // Add effect to fetch initial movies
   useEffect(() => {
     const initializeMovies = async () => {
       const categories = [
@@ -29,7 +26,7 @@ const App = () => {
         ["Toy Story", "TOY STORY"],
         ["Harry Potter", "HARRY POTTER"],
         ["Fast Furious", "FAST AND FURIOUS"],
-        ["Pirates Caribbean", "PIRATES OF CARIBBEAN"],
+        ["Pirates Caribbean", "PIRATES OF CARIBBEAN"]
       ];
 
       await Promise.all(
@@ -40,88 +37,77 @@ const App = () => {
     initializeMovies();
   }, [fetchMovies]);
 
-  useEffect(() => {
-    if (searchValue) {
-      const timeoutId = setTimeout(() => {
-        fetchMovies(searchValue, "searchResults");
-      }, 500);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [searchValue, fetchMovies]);
-
   const handleFavoriteClick = useCallback((movie, isFavorite) => {
-    setFavourites((prev) =>
-      isFavorite
-        ? prev.filter((fav) => fav.imdbID !== movie.imdbID)
+    setFavourites(prev => 
+      isFavorite 
+        ? prev.filter(fav => fav.imdbID !== movie.imdbID)
         : [...prev, movie]
     );
-  }, []);
+  }, [setFavourites]);
 
   if (error) {
-    return (
-      <div className="alert alert-danger m-3" role="alert">
-        {error}
-      </div>
-    );
+    return <ErrorBoundary error={error} />;
   }
 
   return (
     <div className="movie-app d-flex flex-column min-vh-100">
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
+      
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingSpinner />}>
+          <main className="content-wrapper">
+            {loading && <LoadingSpinner />}
 
-      <Suspense fallback={<div className="text-center mt-5">Loading...</div>}>
-        <div className="content-wrapper">
-          {loading && <div className="text-center mt-5">Loading...</div>}
+            {searchValue && (
+              <div className="movie-section searchResults">
+                <MovieListHeading heading="Search Results" />
+                <MovieList
+                  movies={movies.searchResults}
+                  handleFavouritesClick={handleFavoriteClick}
+                  favouriteComponent={AddFavourites}
+                  favourites={favourites}
+                />
+              </div>
+            )}
 
-          {searchValue && (
-            <div className="movie-section searchResults">
-              <MovieListHeading heading="Search Results" />
-              <MovieList
-                movies={movies.searchResults}
-                handleFavouritesClick={handleFavoriteClick}
-                favouriteComponent={AddFavourites}
-                favourites={favourites}
-              />
-            </div>
-          )}
+            {!searchValue && (
+              <>
+                {Object.entries(movies)
+                  .filter(([category]) => category !== "searchResults")
+                  .map(
+                    ([category, movieList]) =>
+                      movieList.length > 0 && (
+                        <div
+                          key={category}
+                          className={`movie-section ${category}`}
+                        >
+                          <MovieListHeading heading={category} />
+                          <MovieList
+                            movies={movieList}
+                            handleFavouritesClick={handleFavoriteClick}
+                            favouriteComponent={AddFavourites}
+                            favourites={favourites}
+                          />
+                        </div>
+                      )
+                  )}
+              </>
+            )}
 
-          {!searchValue && (
-            <>
-              {Object.entries(movies)
-                .filter(([category]) => category !== "searchResults")
-                .map(
-                  ([category, movieList]) =>
-                    movieList.length > 0 && (
-                      <div
-                        key={category}
-                        className={`movie-section ${category}`}
-                      >
-                        <MovieListHeading heading={category} />
-                        <MovieList
-                          movies={movieList}
-                          handleFavouritesClick={handleFavoriteClick}
-                          favouriteComponent={AddFavourites}
-                          favourites={favourites}
-                        />
-                      </div>
-                    )
-                )}
-            </>
-          )}
-
-          {favourites.length > 0 && (
-            <div className="movie-section favourites">
-              <MovieListHeading heading="FAVOURITES COLLECTION" />
-              <MovieList
-                movies={favourites}
-                handleFavouritesClick={handleFavoriteClick}
-                favouriteComponent={RemoveFavourites}
-                favourites={favourites}
-              />
-            </div>
-          )}
-        </div>
-      </Suspense>
+            {favourites.length > 0 && (
+              <div className="movie-section favourites">
+                <MovieListHeading heading="FAVOURITES MOVIES" />
+                <MovieList
+                  movies={favourites}
+                  handleFavouritesClick={handleFavoriteClick}
+                  favouriteComponent={RemoveFavourites}
+                  favourites={favourites}
+                />
+              </div>
+            )}
+          </main>
+        </Suspense>
+      </ErrorBoundary>
 
       <Footer />
     </div>
