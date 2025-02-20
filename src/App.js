@@ -37,6 +37,13 @@ const App = () => {
     initializeMovies();
   }, [fetchMovies]);
 
+  // Fetch search results when searchValue changes
+  useEffect(() => {
+    if (searchValue) {
+      fetchMovies(searchValue, "searchResults");
+    }
+  }, [searchValue, fetchMovies]);
+
   const handleFavoriteClick = useCallback((movie, isFavorite) => {
     setFavourites(prev => 
       isFavorite 
@@ -70,29 +77,25 @@ const App = () => {
               </div>
             )}
 
-            {!searchValue && (
-              <>
-                {Object.entries(movies)
-                  .filter(([category]) => category !== "searchResults")
-                  .map(
-                    ([category, movieList]) =>
-                      movieList.length > 0 && (
-                        <div
-                          key={category}
-                          className={`movie-section ${category}`}
-                        >
-                          <MovieListHeading heading={category} />
-                          <MovieList
-                            movies={movieList}
-                            handleFavouritesClick={handleFavoriteClick}
-                            favouriteComponent={AddFavourites}
-                            favourites={favourites}
-                          />
-                        </div>
-                      )
-                  )}
-              </>
-            )}
+            {Object.entries(movies)
+              .filter(([category]) => category !== "searchResults")
+              .map(
+                ([category, movieList]) =>
+                  movieList.length > 0 && (
+                    <div
+                      key={category}
+                      className={`movie-section ${category}`}
+                    >
+                      <MovieListHeading heading={category} />
+                      <MovieList
+                        movies={movieList}
+                        handleFavouritesClick={handleFavoriteClick}
+                        favouriteComponent={AddFavourites}
+                        favourites={favourites}
+                      />
+                    </div>
+                  )
+              )}
 
             {favourites.length > 0 && (
               <div className="movie-section favourites">
