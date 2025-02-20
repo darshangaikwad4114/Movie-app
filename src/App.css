@@ -304,7 +304,14 @@ body {
 }
 
 .movie-section.searchResults {
-  background: linear-gradient(135deg, #e8f5e9, #dceddc);
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 1rem;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.5s ease-out forwards;
 }
 
 /* Adjust heading contrast */
@@ -831,9 +838,42 @@ body {
 }
 
 .searchResults .movie-list-heading {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #fff;
+  background: linear-gradient(135deg, #fff, #aaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.searchResults .movie-list-heading::before {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.searchResults .movie-list-heading::after {
+  content: '🔍';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  background: #141414;
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: #fff;
+  -webkit-text-fill-color: initial;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments for search results */
+@media (max-width: 768px) {
+  .movie-section.searchResults {
+    padding: 1.5rem 1rem;
+  }
+  
+  .searchResults .movie-list-heading::after {
+    font-size: 1.2rem;
+    bottom: -12px;
+  }
 }
 
 /* Responsive adjustments */
@@ -940,6 +980,12 @@ body {
 /* Loading Spinner */
 .loading-spinner {
   min-height: 200px;
+  animation: spin 1s linear infinite, fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Remove duplicate styles and organize by component */
@@ -968,6 +1014,7 @@ body {
   padding: 2rem;
   margin: 0 auto;
   max-width: 2000px;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Enhanced Movie Card */
@@ -979,6 +1026,8 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   aspect-ratio: 2/3;
   cursor: pointer;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
 }
 
 .movie-card::after {
@@ -1490,4 +1539,66 @@ body {
   .action-btn i {
     font-size: 1rem;
   }
+}
+
+/* Search Results Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading Animation States */
+.loading-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.loading-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.loading-exit {
+  opacity: 1;
+}
+
+.loading-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Smooth Content Transitions */
+.movie-card {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered Animation for Cards */
+.movie-card:nth-child(1) { animation-delay: 0.1s; }
+.movie-card:nth-child(2) { animation-delay: 0.2s; }
+.movie-card:nth-child(3) { animation-delay: 0.3s; }
+.movie-card:nth-child(4) { animation-delay: 0.4s; }
+.movie-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Smooth Section Transitions */
+.movie-section {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
