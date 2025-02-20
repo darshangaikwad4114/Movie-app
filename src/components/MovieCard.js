@@ -1,6 +1,11 @@
 import React, { memo } from 'react';
 
 const MovieCard = memo(({ movie, onFavoriteClick, FavoriteComponent, isFavorite }) => {
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation(); // Prevent card click when clicking button
+    onFavoriteClick(movie, isFavorite);
+  };
+
   return (
     <div 
       className="image-container"
@@ -12,18 +17,15 @@ const MovieCard = memo(({ movie, onFavoriteClick, FavoriteComponent, isFavorite 
         alt={movie.Title}
         loading="lazy"
       />
-      <div
-        className="overlay"
-        onClick={() => onFavoriteClick(movie, isFavorite)}
-        onKeyPress={(e) => e.key === 'Enter' && onFavoriteClick(movie, isFavorite)}
-        role="button"
-        tabIndex={0}
-        aria-label={`${isFavorite ? 'Remove from' : 'Add to'} favorites`}
-      >
+      <div className="overlay">
         <h3 className="movie-title">{movie.Title}</h3>
-        <div className="favorite-btn">
+        <button
+          className="favorite-btn"
+          onClick={handleFavoriteClick}
+          aria-label={`${isFavorite ? 'Remove from' : 'Add to'} favorites`}
+        >
           <FavoriteComponent />
-        </div>
+        </button>
       </div>
     </div>
   );

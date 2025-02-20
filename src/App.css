@@ -412,17 +412,26 @@ body {
 
 /* Favorite Button Styling */
 .favorite-btn {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 0.5rem;
+  background: rgba(255, 215, 0, 0.15);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
   color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
   opacity: 0;
   transform: translateY(10px);
-  transition-delay: 0.1s;
+  z-index: 10;
 }
 
 .image-container:hover .favorite-btn {
@@ -431,7 +440,22 @@ body {
 }
 
 .favorite-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 215, 0, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.favorite-btn:active {
+  transform: scale(0.95);
+}
+
+.favorite-btn i {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.favorite-btn:hover i {
+  transform: scale(1.2);
 }
 
 /* Responsive Breakpoints */
@@ -599,30 +623,50 @@ body {
 
 /* Enhanced Favorite Button */
 .favorite-btn {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 215, 0, 0.15);
   backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 215, 0, 0.3);
   border-radius: 12px;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.875rem;
+  cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  z-index: 10;
+}
+
+.image-container:hover .favorite-btn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .favorite-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  background: rgba(255, 215, 0, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.favorite-btn:active {
+  transform: scale(0.95);
 }
 
 .favorite-btn i {
   font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.favorite-btn:hover i {
+  transform: scale(1.2);
 }
 
 /* Responsive Typography */
@@ -718,13 +762,39 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Update Favourites Heading Style */
 .favourites .movie-list-heading {
-  background: linear-gradient(135deg, #ffd700, #ffa500);
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 3.2rem;
+  font-size: 3rem;
+  font-weight: 800;
   text-shadow: none;
-  margin-bottom: 3rem;
+  margin: 2rem 0 3rem;
+}
+
+.favourites .movie-list-heading::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #ffd700, transparent);
+}
+
+.favourites .movie-list-heading::after {
+  content: '★';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  background: #1e1e1e;
+  padding: 0 1rem;
+  color: #ffd700;
+  -webkit-text-fill-color: #ffd700;
 }
 
 .favourites .movie-list-heading::before {

@@ -111,7 +111,7 @@ const App = () => {
 
           {favourites.length > 0 && (
             <div className="movie-section favourites">
-              <MovieListHeading heading="Favourites" />
+              <MovieListHeading heading="FAVOURITES COLLECTION" />
               <MovieList
                 movies={favourites}
                 handleFavouritesClick={handleFavoriteClick}
