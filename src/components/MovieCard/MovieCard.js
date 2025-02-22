@@ -1,15 +1,25 @@
-import React, { memo, useCallback, useState, useRef } from 'react';
+import React, { memo, useCallback, useState, useRef, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
-import OptimizedImage from '../Image/OptimizedImage';
+import { useImageOptimization } from '../../hooks/useImageOptimization';
 import styles from './MovieCard.module.css';
 
 const MovieCard = memo(({ movie, onFavoriteClick, isFavorite }) => {
+  const { getOptimizedImageUrl } = useImageOptimization();
   const [isFocused, setIsFocused] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const buttonRef = useRef(null);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const posterUrl = useMemo(() => 
+    getOptimizedImageUrl(movie.Poster, {
+      width: window.innerWidth < 768 ? 300 : 400,
+      quality: 75
+    }),
+    [movie.Poster, getOptimizedImageUrl]
+  );
 
   const handleFavoriteClick = useCallback((e) => {
     e.stopPropagation();
@@ -26,10 +36,19 @@ const MovieCard = memo(({ movie, onFavoriteClick, isFavorite }) => {
     }
   }, []);
 
+  const handleImageLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const imageSize = useMemo(() => ({
+    width: window.innerWidth < 768 ? 300 : 400,
+    height: window.innerWidth < 768 ? 450 : 600,
+  }), []);
+
   return (
     <article 
       ref={ref}
-      className={styles.card} 
+      className={`${styles.card} ${isLoaded ? styles.loaded : ''}`}
       role="article"
       tabIndex={0}
       onKeyDown={handleCardKeyDown}
@@ -39,14 +58,32 @@ const MovieCard = memo(({ movie, onFavoriteClick, isFavorite }) => {
       aria-label={`${movie.Title} (${movie.Year})`}
       style={{
         opacity: inView ? 1 : 0,
-        transform: `translateY(${inView ? 0 : '20px'})`
+        transform: `translateY(${inView ? 0 : '20px'})`,
+        aspectRatio: `${imageSize.width} / ${imageSize.height}`
       }}
     >
-      <OptimizedImage
-        src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'}
-        alt={`Movie poster for ${movie.Title}`}
-        className={styles.poster}
-      />
+      {!isLoaded && <div className={styles.skeleton} />}
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={`${posterUrl}&fmt=avif`}
+        />
+        <source
+          type="image/webp"
+          srcSet={`${posterUrl}&fmt=webp`}
+        />
+        <img
+          src={posterUrl}
+          alt={`Movie poster for ${movie.Title}`}
+          className={styles.poster}
+          loading="lazy"
+          decoding="async"
+          width={imageSize.width}
+          height={imageSize.height}
+          onLoad={handleImageLoad}
+          style={{ opacity: isLoaded ? 1 : 0 }}
+        />
+      </picture>
       <div className={styles.content} role="group" aria-label="Movie details">
         <h3 className={styles.title} id={`movie-title-${movie.imdbID}`}>
           {movie.Title}
