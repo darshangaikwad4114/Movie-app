@@ -102,22 +102,21 @@ body {
 /* Updated Navbar Styles */
 .navbar {
   background: linear-gradient(to right, #1e1e1e, #2c2c2c);
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 50px;
 }
 
 .navbar-brand {
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: bold;
   transition: color 0.3s ease;
+  padding: 0;
 }
 
 .navbar-brand:hover {
@@ -136,9 +135,10 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   transition: all 0.3s ease;
   flex-grow: 1;
+  height: 35px;
 }
 
 .search-input:focus {
@@ -154,9 +154,10 @@ body {
 
 .search-button {
   margin-left: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+  height: 35px;
 }
 
 .search-button:hover {
@@ -166,11 +167,12 @@ body {
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
+    min-height: 45px;
   }
 
   .navbar-brand {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .search-form {
@@ -179,16 +181,18 @@ body {
   }
 
   .search-input {
-    padding: 0.5rem;
+    padding: 0.25rem;
+    height: 32px;
   }
 
   .search-button {
-    padding: 0.5rem;
+    padding: 0.25rem;
+    height: 32px;
   }
 }
 
 .navbar-logo {
-  height: 40px;
+  height: 30px;
   width: auto;
 }
 
@@ -272,7 +276,7 @@ body {
 
 /* Adjust content spacing to prevent navbar overlap */
 .content-wrapper {
-  margin-top: 80px;
+  margin-top: 60px;
   padding: 20px;
 }
 
@@ -295,7 +299,7 @@ body {
   }
 
   .content-wrapper {
-    margin-top: 70px;
+    margin-top: 55px;
   }
 }
 

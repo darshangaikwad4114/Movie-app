@@ -54,12 +54,12 @@ const App = () => {
   useEffect(() => {
     const initializeMovies = async () => {
       await Promise.all([
-        getMovieRequest("Avengers", "avengers"),
-        getMovieRequest("Transformers", "transformers"),
-        getMovieRequest("Toy Story", "toyStory"),
-        getMovieRequest("Harry Potter", "harryPotter"),
-        getMovieRequest("Fast Furious", "fastAndFurious"),
-        getMovieRequest("Pirates Caribbean", "piratesOfCaribbean")
+        getMovieRequest("Avengers", "AVENGERS"),
+        getMovieRequest("Transformers", "TRANSFORMERS"),
+        getMovieRequest("Toy Story", "TOY STORY"),
+        getMovieRequest("Harry Potter", "HARRY POTTER"),
+        getMovieRequest("Fast Furious", "FAST FURIOUS"),
+        getMovieRequest("Pirates Caribbean", "PIRATES CARIBBEAN")
       ]);
     };
     initializeMovies();
