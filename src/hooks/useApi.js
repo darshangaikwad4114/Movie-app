@@ -1,35 +1,39 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import axios from 'axios';
-import { API_CONFIG } from '../constants/config';
+import { useCache } from './useCache';
+
+const API_URL = "https://www.omdbapi.com/";
+const API_KEY = process.env.REACT_APP_OMDB_API_KEY || "e04fd151";
 
 export const useApi = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { getCached, setCached } = useCache();
 
   const fetchData = useCallback(async (endpoint, params = {}) => {
-    setLoading(true);
-    setError(null);
+    const cacheKey = JSON.stringify({ endpoint, params });
+    const cachedData = getCached(cacheKey);
+    
+    if (cachedData) {
+      return cachedData;
+    }
 
     try {
-      const response = await axios.get(`${API_CONFIG.baseUrl}${endpoint}`, {
+      const response = await axios.get(`${API_URL}${endpoint}`, {
         params: {
           ...params,
-          apikey: API_CONFIG.apiKey
+          apikey: API_KEY
         }
       });
 
-      if (response.data.Response === "True") {
-        return response.data;
-      } else {
+      if (response.data.Response === "False") {
         throw new Error(response.data.Error);
       }
-    } catch (err) {
-      setError(err.message);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
-  return { loading, error, fetchData };
+      setCached(cacheKey, response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error(`API Error: ${error.message}`);
+    }
+  }, [getCached, setCached]);
+
+  return { fetchData };
 };

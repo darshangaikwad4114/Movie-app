@@ -1,0 +1,156 @@
+.card {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: var(--transition-slow);
+  cursor: pointer;
+  background: var(--secondary-bg);
+  will-change: transform;
+  transform-origin: center center;
+  outline: none;
+  contain: layout style paint;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.card:focus-visible {
+  outline: 3px solid #ffd700;
+  outline-offset: 4px;
+  transform: scale(1.02);
+}
+
+.card[data-focused="true"] .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-slow);
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--spacing-md);
+  background: var(--card-hover-gradient);
+  opacity: 0;
+  transition: var(--transition-normal);
+}
+
+.card:hover .content {
+  opacity: 1;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  transform: translateY(10px);
+  transition: transform var(--transition-normal);
+}
+
+.card:hover .title {
+  transform: translateY(0);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-normal) 100ms;
+}
+
+.card:hover .actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 4px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  transition: var(--transition-fast);
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.button:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.primary {
+  background: var(--accent);
+}
+
+.primary:hover {
+  background: var(--accent);
+  filter: brightness(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .content,
+  .button {
+    transition: none;
+    transform: none;
+  }
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
