@@ -93,40 +93,36 @@ const App = () => {
       <div className="content-wrapper">
         {loading && <div className="text-center mt-5">Loading...</div>}
 
-        {searchValue && (
-          <div className="container">
-            <MovieListHeading heading="searchResults" />
-            <MovieList
-              movies={movies.searchResults}
-              handleFavouritesClick={handleFavoriteClick}
-              favouriteComponent={AddFavourites}
-              favourites={favourites}
-            />
-          </div>
-        )}
+        <div className="container">
+          {searchValue && (
+            <>
+              <MovieListHeading heading="searchResults" />
+              <MovieList
+                movies={movies.searchResults}
+                handleFavouritesClick={handleFavoriteClick}
+                favouriteComponent={AddFavourites}
+                favourites={favourites}
+              />
+            </>
+          )}
 
-        {!searchValue && (
-          <div className="container">
-            {Object.entries(movies)
-              .filter(([category]) => category !== 'searchResults')
-              .map(([category, movieList]) => (
-                movieList.length > 0 && (
-                  <div className={`movie-section ${category}`} key={category}>
-                    <MovieListHeading heading={category} />
-                    <MovieList
-                      movies={movieList}
-                      handleFavouritesClick={handleFavoriteClick}
-                      favouriteComponent={AddFavourites}
-                      favourites={favourites}
-                    />
-                  </div>
-                )
-            ))}
-          </div>
-        )}
+          {Object.entries(movies)
+            .filter(([category]) => category !== 'searchResults')
+            .map(([category, movieList]) => (
+              movieList.length > 0 && (
+                <div className={`movie-section ${category}`} key={category}>
+                  <MovieListHeading heading={category} />
+                  <MovieList
+                    movies={movieList}
+                    handleFavouritesClick={handleFavoriteClick}
+                    favouriteComponent={AddFavourites}
+                    favourites={favourites}
+                  />
+                </div>
+              )
+          ))}
 
-        {favourites.length > 0 && (
-          <div className="container">
+          {favourites.length > 0 && (
             <div className="movie-section favourites">
               <MovieListHeading heading="FAVOURITES" />
               <MovieList
@@ -136,8 +132,8 @@ const App = () => {
                 favourites={favourites}
               />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <Footer />
