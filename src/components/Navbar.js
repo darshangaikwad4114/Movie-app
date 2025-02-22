@@ -4,7 +4,7 @@ import Logo from './Logo';
 const Navbar = ({ searchValue, setSearchValue }) => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-bs-theme="dark">
-			<div className="container-fluid justify-content-center">
+			<div className="container-fluid justify-content-between">
 				<a className="navbar-brand" href="/" style={{ fontSize: '1.5rem' }}>
 					<Logo /> FilmFinder
 				</a>

@@ -7,11 +7,11 @@
 
 /* Base Styles */
 :root {
-  --primary-bg: #141414;
-  --secondary-bg: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --accent: #e50914;
+  --primary-bg: #121212;
+  --secondary-bg: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: rgba(224, 224, 224, 0.7);
+  --accent: #bb86fc;
   --overlay-gradient: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%);
 }
 
@@ -101,7 +101,7 @@ body {
 
 /* Updated Navbar Styles */
 .navbar {
-  background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+  background: linear-gradient(to right, #1e1e1e, #2c2c2c);
   padding: 1rem 0;
   position: fixed;
   top: 0;
@@ -180,7 +180,7 @@ body {
 
 /* Updated Footer Styles */
 .footer {
-  background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+  background: linear-gradient(to right, #1e1e1e, #2c2c2c);
   color: #fff;
   padding: 20px 0;
   text-align: center;
@@ -272,40 +272,40 @@ body {
 }
 
 .movie-section.avengers {
-  background: linear-gradient(135deg, #fff6e5, #ffecd9);
+  background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
 }
 
 .movie-section.transformers {
-  background: linear-gradient(135deg, #e6f3ff, #f0f7ff);
+  background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
 }
 
 .movie-section.toyStory {
-  background: linear-gradient(135deg, #fff0f0, #ffe6e6);
+  background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
 }
 
 .movie-section.harryPotter {
-  background: linear-gradient(135deg, #f3e5ff, #eee0ff);
+  background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
 }
 
 .movie-section.fastAndFurious {
-  background: linear-gradient(135deg, #fff2e6, #ffe9d9);
+  background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
 }
 
 .movie-section.piratesOfCaribbean {
-  background: linear-gradient(135deg, #e6fff2, #d9fff0);
+  background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
 }
 
 .movie-section.favourites {
-  background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
-  border: 2px solid #ffd700;
+  background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  border: 2px solid #bb86fc;
   padding: 3rem 1rem;
   position: relative;
   overflow: hidden;
 }
 
 .movie-section.searchResults {
-  background: #141414;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #121212;
+  border: 1px solid rgba(224, 224, 224, 0.1);
   padding: 2rem 1rem;
   margin: 1rem 0;
   position: relative;
@@ -428,9 +428,9 @@ body {
 
 /* Updated Favorite Button Styling */
 .favorite-btn {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(187, 134, 252, 0.15);
   backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(187, 134, 252, 0.3);
   border-radius: 12px;
   padding: 0.75rem 1.5rem;
   color: #ffffff;
@@ -456,7 +456,7 @@ body {
 }
 
 .favorite-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(187, 134, 252, 0.25);
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.4);

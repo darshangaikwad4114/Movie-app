@@ -9,7 +9,7 @@ const MovieList = memo(({ movies, handleFavouritesClick, favouriteComponent, fav
   }
 
   return (
-    <div className="row justify-content-center" role="list">
+    <div className="movie-grid" role="list">
       {movies.map((movie) => (
         <MovieCard
           key={movie.imdbID}

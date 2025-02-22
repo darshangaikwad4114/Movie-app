@@ -111,7 +111,7 @@ const App = () => {
               .filter(([category]) => category !== 'searchResults')
               .map(([category, movieList]) => (
                 movieList.length > 0 && (
-                  <React.Fragment key={category}>
+                  <div className={`movie-section ${category}`} key={category}>
                     <MovieListHeading heading={category} />
                     <MovieList
                       movies={movieList}
@@ -119,7 +119,7 @@ const App = () => {
                       favouriteComponent={AddFavourites}
                       favourites={favourites}
                     />
-                  </React.Fragment>
+                  </div>
                 )
             ))}
           </div>
@@ -127,13 +127,15 @@ const App = () => {
 
         {favourites.length > 0 && (
           <div className="container">
-            <MovieListHeading heading="FAVOURITES" />
-            <MovieList
-              movies={favourites}
-              handleFavouritesClick={handleFavoriteClick}
-              favouriteComponent={RemoveFavourites}
-              favourites={favourites}
-            />
+            <div className="movie-section favourites">
+              <MovieListHeading heading="FAVOURITES" />
+              <MovieList
+                movies={favourites}
+                handleFavouritesClick={handleFavoriteClick}
+                favouriteComponent={RemoveFavourites}
+                favourites={favourites}
+              />
+            </div>
           </div>
         )}
       </div>
