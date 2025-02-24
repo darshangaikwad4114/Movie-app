@@ -8,6 +8,7 @@ import RemoveFavourites from "./components/RemoveFavourites";
 import MovieListHeading from "./components/MovieListHeading";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import LoadingSpinner from './components/LoadingSpinner';
 
 const API_URL = "https://www.omdbapi.com/";
 
@@ -26,7 +27,18 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Add loading states for different sections
+  const [sectionLoading, setSectionLoading] = useState({
+    initial: true,
+    search: false
+  });
+
   const getMovieRequest = useCallback(async (searchValue, category) => {
+    const isSearch = category === 'searchResults';
+    if (isSearch) {
+      setSectionLoading(prev => ({ ...prev, search: true }));
+    }
+
     setLoading(true);
     setError(null);
     try {
@@ -47,6 +59,11 @@ const App = () => {
       setError(`Failed to fetch ${category} movies: ${error.message}`);
       console.error(error);
     } finally {
+      if (isSearch) {
+        setSectionLoading(prev => ({ ...prev, search: false }));
+      } else {
+        setSectionLoading(prev => ({ ...prev, initial: false }));
+      }
       setLoading(false);
     }
   }, []);
@@ -82,6 +99,14 @@ const App = () => {
     );
   }, []);
 
+  // Add empty state handling
+  const renderEmptyState = (message) => (
+    <div className="empty-state">
+      <i className="bi bi-film"></i>
+      <p>{message}</p>
+    </div>
+  );
+
   if (error) {
     return <div className="alert alert-danger m-3" role="alert">{error}</div>;
   }
@@ -91,18 +116,24 @@ const App = () => {
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
       
       <div className="content-wrapper">
-        {loading && <div className="text-center mt-5">Loading...</div>}
+        {sectionLoading.initial && <LoadingSpinner />}
 
         <div className="container">
           {searchValue && (
             <>
-              <MovieListHeading heading="searchResults" />
-              <MovieList
-                movies={movies.searchResults}
-                handleFavouritesClick={handleFavoriteClick}
-                favouriteComponent={AddFavourites}
-                favourites={favourites}
-              />
+              <MovieListHeading heading="Search Results" />
+              {sectionLoading.search ? (
+                <LoadingSpinner />
+              ) : movies.searchResults.length === 0 ? (
+                renderEmptyState('No movies found. Try a different search term.')
+              ) : (
+                <MovieList
+                  movies={movies.searchResults}
+                  handleFavouritesClick={handleFavoriteClick}
+                  favouriteComponent={AddFavourites}
+                  favourites={favourites}
+                />
+              )}
             </>
           )}
 
