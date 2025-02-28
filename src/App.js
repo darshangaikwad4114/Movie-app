@@ -24,7 +24,6 @@ const App = () => {
   });
   const [favourites, setFavourites] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // Add loading states for different sections
@@ -39,7 +38,6 @@ const App = () => {
       setSectionLoading(prev => ({ ...prev, search: true }));
     }
 
-    setLoading(true);
     setError(null);
     try {
       const response = await axios.get(API_URL, {
@@ -57,14 +55,12 @@ const App = () => {
       }
     } catch (error) {
       setError(`Failed to fetch ${category} movies: ${error.message}`);
-      console.error(error);
     } finally {
       if (isSearch) {
         setSectionLoading(prev => ({ ...prev, search: false }));
       } else {
         setSectionLoading(prev => ({ ...prev, initial: false }));
       }
-      setLoading(false);
     }
   }, []);
 

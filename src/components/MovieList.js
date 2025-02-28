@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
 
 const MovieList = memo(({ movies, handleFavouritesClick, favouriteComponent, favourites }) => {
@@ -22,6 +23,13 @@ const MovieList = memo(({ movies, handleFavouritesClick, favouriteComponent, fav
     </div>
   );
 });
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleFavouritesClick: PropTypes.func.isRequired,
+  favouriteComponent: PropTypes.elementType.isRequired,
+  favourites: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 MovieList.displayName = 'MovieList';
 

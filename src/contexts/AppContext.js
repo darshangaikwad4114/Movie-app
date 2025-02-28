@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 const defaultContextValue = {
   theme: 'dark',
@@ -35,10 +36,14 @@ export const AppProvider = ({ children }) => {
   );
 };
 
+AppProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) {
-    console.warn('useApp must be used within an AppProvider');
+    // console.warn('useApp must be used within an AppProvider');
     return defaultContextValue;
   }
   return context;

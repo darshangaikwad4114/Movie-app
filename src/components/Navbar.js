@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Logo from './Logo';
 
+// eslint-disable-next-line react/prop-types
 const Navbar = ({ searchValue, setSearchValue }) => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-bs-theme="dark">
@@ -27,6 +29,11 @@ const Navbar = ({ searchValue, setSearchValue }) => {
 			</div>
 		</nav>
 	);
+};
+
+Navbar.propTypes = {
+  searchValue: PropTypes.string.isRequired,
+  setSearchValue: PropTypes.func.isRequired,
 };
 
 export default Navbar;

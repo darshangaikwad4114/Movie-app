@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
 const MovieCard = memo(({ movie, onFavoriteClick, FavoriteComponent, isFavorite }) => {
   const handleFavoriteClick = (e) => {
@@ -38,6 +39,17 @@ const MovieCard = memo(({ movie, onFavoriteClick, FavoriteComponent, isFavorite 
     </div>
   );
 });
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    imdbID: PropTypes.string.isRequired,
+    Poster: PropTypes.string,
+    Title: PropTypes.string,
+  }).isRequired,
+  onFavoriteClick: PropTypes.func.isRequired,
+  FavoriteComponent: PropTypes.elementType.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+};
 
 MovieCard.displayName = 'MovieCard';
 
