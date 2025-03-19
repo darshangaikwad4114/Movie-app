@@ -2,8 +2,6 @@
 
 # FilmFinder
 
-![FilmFinder Logo](./src/assets/logo.svg)
-
 A modern movie discovery application built with React
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENCE)
